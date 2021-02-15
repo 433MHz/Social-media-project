@@ -14,7 +14,7 @@ nav input[type="button"]{
     width: 15vh;
     height: 4vh;
     margin-top: 2vh;
-    background-color: rgb(50, 146, 255);;
+    background-color: rgb(50, 146, 255);
     font-size: 20px;
     color: white;
     font-weight: bold;
@@ -23,6 +23,10 @@ nav input[type="button"]{
 }
 
 nav input[type="button"]:hover{
-    background-color: rgb(139, 139, 139);;
+    background-color: rgb(139, 139, 139);
     cursor: pointer;
+}
+
+#loginDiv, #registerDiv{
+    background-color: rgb(145, 196, 255);
 }
