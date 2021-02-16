@@ -17,8 +17,8 @@ class CheckDataTest {
 		userData.setRPassword("Password123");
 		
 		
-		assertEquals("Succesfully created", checkData.start(userData).getMessage());
-		assertEquals(true, checkData.start(userData).isSuccess());
+		assertEquals("Succesfully created", checkData.Start(userData).getMessage());
+		assertEquals(true, checkData.Start(userData).isSuccess());
 	}
 	
 	@Test
@@ -30,8 +30,8 @@ class CheckDataTest {
 		userData.setPassword("pppppasswordwithmorethan30digits");
 		userData.setRPassword("pppppasswordwithmorethan30digits");
 		
-		assertEquals("Check if password is correct (5 - 30 digits or used forbidden signs)", checkData.start(userData).getMessage());
-		assertEquals(false, checkData.start(userData).isSuccess());
+		assertEquals("Check if password is correct (5 - 30 digits or used forbidden signs)", checkData.Start(userData).getMessage());
+		assertEquals(false, checkData.Start(userData).isSuccess());
 	}
 	
 	@Test
@@ -44,8 +44,8 @@ class CheckDataTest {
 		userData.setPassword("jjjj");
 		userData.setRPassword("jjjj");
 		
-		assertEquals("Check if password is correct (5 - 30 digits or used forbidden signs)", checkData.start(userData).getMessage());
-		assertEquals(false, checkData.start(userData).isSuccess());
+		assertEquals("Check if password is correct (5 - 30 digits or used forbidden signs)", checkData.Start(userData).getMessage());
+		assertEquals(false, checkData.Start(userData).isSuccess());
 	}
 	
 	@Test
@@ -58,8 +58,8 @@ class CheckDataTest {
 		userData.setPassword("krystian");
 		userData.setRPassword("tomekk");
 		
-		assertEquals("Check if password is correct (5 - 30 digits or used forbidden signs)", checkData.start(userData).getMessage());
-		assertEquals(false, checkData.start(userData).isSuccess());
+		assertEquals("Check if password is correct (5 - 30 digits or used forbidden signs)", checkData.Start(userData).getMessage());
+		assertEquals(false, checkData.Start(userData).isSuccess());
 	}
 	
 	@Test
@@ -72,8 +72,8 @@ class CheckDataTest {
 		userData.setPassword("aaaaaaaaaa");
 		userData.setRPassword("aaaaaaaaaa");
 		
-		assertEquals("Check if login is correct (5 - 30 digits or used forbidden signs)", checkData.start(userData).getMessage());
-		assertEquals(false, checkData.start(userData).isSuccess());
+		assertEquals("Check if login is correct (5 - 30 digits or used forbidden signs)", checkData.Start(userData).getMessage());
+		assertEquals(false, checkData.Start(userData).isSuccess());
 	}
 	
 	@Test
@@ -86,8 +86,8 @@ class CheckDataTest {
 		userData.setPassword("aaaaaaaaaa");
 		userData.setRPassword("aaaaaaaaaa");
 		
-		assertEquals("Check if login is correct (5 - 30 digits or used forbidden signs)", checkData.start(userData).getMessage());
-		assertEquals(false, checkData.start(userData).isSuccess());
+		assertEquals("Check if login is correct (5 - 30 digits or used forbidden signs)", checkData.Start(userData).getMessage());
+		assertEquals(false, checkData.Start(userData).isSuccess());
 	}
 	
 }

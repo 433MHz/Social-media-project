@@ -2,6 +2,7 @@ package pl.krystian.TwiFac.register_new_user;
 
 import org.springframework.stereotype.Component;
 
+
 @Component
 class CheckData {
 
@@ -12,19 +13,19 @@ class CheckData {
 	final private String LOGIN_ALLOWED_SIGNS = "0123456789QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm";
 	final private String PASSWORD_ALLOWED_SIGNS = LOGIN_ALLOWED_SIGNS + "!@#$%^&*()_-+=";
 
-	public RegistrationStatus start(UserData userData) {
+	public RegistrationStatus Start(UserData userData) {
 
 		String password = userData.getPassword();
 		String rPassword = userData.getRPassword();
 		String login = userData.getLogin();
 
-		boolean passwordOk = passwordsCorrect(password, rPassword);
-		boolean loginOk = loginCorrect(login);
+		boolean passwordOk = PasswordsCorrect(password, rPassword);
+		boolean loginOk = LoginCorrect(login);
 		RegistrationStatus registrationStatus = new RegistrationStatus();
 
 		if (loginOk) {
 			if (passwordOk) {
-				if (loginIsNotInDatabase(login)) {
+				if (LoginIsNotInDatabase(login)) {
 					String message = "Succesfully created";
 					registrationStatus.setMessage(message);
 					registrationStatus.setSuccess(true);
@@ -49,9 +50,9 @@ class CheckData {
 		return registrationStatus;
 	}
 
-	private boolean passwordsCorrect(String password, String rPassword) {
-		Boolean passwordStatus[] = { passwordTooLong(password), passwordTooShort(password),
-				passwordContainForbiddenSigns(password), passwordsAreDifferent(password, rPassword) };
+	private boolean PasswordsCorrect(String password, String rPassword) {
+		Boolean passwordStatus[] = { PasswordTooLong(password), PasswordTooShort(password),
+				PasswordContainForbiddenSigns(password), PasswordsAreDifferent(password, rPassword) };
 
 		for (Boolean status : passwordStatus) {
 			if (status)
@@ -60,8 +61,8 @@ class CheckData {
 		return true;
 	}
 
-	private boolean loginCorrect(String login) {
-		Boolean loginStatus[] = { loginTooLong(login), loginTooShort(login), loginContainForbiddenSigns(login), };
+	private boolean LoginCorrect(String login) {
+		Boolean loginStatus[] = { LoginTooLong(login), LoginTooShort(login), LoginContainForbiddenSigns(login), };
 
 		for (Boolean status : loginStatus) {
 			if (status)
@@ -70,21 +71,21 @@ class CheckData {
 		return true;
 	}
 
-	private boolean passwordTooLong(String password) {
+	private boolean PasswordTooLong(String password) {
 		if (password.length() >= PASSWORD_MAX_LENGTH)
 			return true;
 		else
 			return false;
 	}
 
-	private boolean passwordTooShort(String password) {
+	private boolean PasswordTooShort(String password) {
 		if (password.length() <= PASSWORD_MIN_LENGTH)
 			return true;
 		else
 			return false;
 	}
 
-	private boolean passwordContainForbiddenSigns(String password) {
+	private boolean PasswordContainForbiddenSigns(String password) {
 
 		for (int i = 0; i < password.length(); i++) {
 			String letter = password.charAt(i) + "";
@@ -97,28 +98,28 @@ class CheckData {
 		return false;
 	}
 
-	private boolean passwordsAreDifferent(String password, String rPassword) {
+	private boolean PasswordsAreDifferent(String password, String rPassword) {
 		if (password.equals(rPassword))
 			return false;
 		else
 			return true;
 	}
 
-	private boolean loginTooLong(String login) {
+	private boolean LoginTooLong(String login) {
 		if (login.length() >= LOGIN_MAX_LENGTH)
 			return true;
 		else
 			return false;
 	}
 
-	private boolean loginTooShort(String login) {
+	private boolean LoginTooShort(String login) {
 		if (login.length() <= LOGIN_MIN_LENGTH)
 			return true;
 		else
 			return false;
 	}
 
-	private boolean loginContainForbiddenSigns(String login) {
+	private boolean LoginContainForbiddenSigns(String login) {
 
 		for (int i = 0; i < login.length(); i++) {
 			String letter = login.charAt(i) + "";
@@ -131,8 +132,9 @@ class CheckData {
 		return false;
 	}
 
-	private boolean loginIsNotInDatabase(String login) {
-		return false;
+	private boolean LoginIsNotInDatabase(String login) {
+		Database database = new Database();
+		return database.CheckIfUserIsInDatabase(login);
 	}
 
 }
