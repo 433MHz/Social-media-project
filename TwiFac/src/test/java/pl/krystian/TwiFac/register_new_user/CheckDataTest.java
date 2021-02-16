@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 class CheckDataTest {
 
 	@Test
-	@DisplayName("Correct values, should return true and \"Succesfully created\" message")
+	@DisplayName("Correct values case")
 	void testStart_Correct_Values() {
 		CheckData checkData = new CheckData();
 		UserData userData = new UserData();
@@ -22,7 +22,7 @@ class CheckDataTest {
 	}
 	
 	@Test
-	@DisplayName("Password is too long")
+	@DisplayName("Password is too long case")
 	void testStart_Password_Too_Long() {
 		CheckData checkData = new CheckData();
 		UserData userData = new UserData();
@@ -33,5 +33,61 @@ class CheckDataTest {
 		assertEquals("Check if password is correct (5 - 30 digits or used forbidden signs)", checkData.start(userData).getMessage());
 		assertEquals(false, checkData.start(userData).isSuccess());
 	}
-
+	
+	@Test
+	@DisplayName("Password is too short case")
+	void testStart_Password_Too_Short() {
+		
+		CheckData checkData = new CheckData();
+		UserData userData = new UserData();
+		userData.setLogin("Krystian");
+		userData.setPassword("jjjj");
+		userData.setRPassword("jjjj");
+		
+		assertEquals("Check if password is correct (5 - 30 digits or used forbidden signs)", checkData.start(userData).getMessage());
+		assertEquals(false, checkData.start(userData).isSuccess());
+	}
+	
+	@Test
+	@DisplayName("Passwords are not same")
+	void testStart_PasswordsNotSame() {
+		
+		CheckData checkData = new CheckData();
+		UserData userData = new UserData();
+		userData.setLogin("Krystian");
+		userData.setPassword("krystian");
+		userData.setRPassword("tomekk");
+		
+		assertEquals("Check if password is correct (5 - 30 digits or used forbidden signs)", checkData.start(userData).getMessage());
+		assertEquals(false, checkData.start(userData).isSuccess());
+	}
+	
+	@Test
+	@DisplayName("Login is too long")
+	void testStart_LoginTooLong() {
+		
+		CheckData checkData = new CheckData();
+		UserData userData = new UserData();
+		userData.setLogin("11111111111111111111111111111122222");
+		userData.setPassword("aaaaaaaaaa");
+		userData.setRPassword("aaaaaaaaaa");
+		
+		assertEquals("Check if login is correct (5 - 30 digits or used forbidden signs)", checkData.start(userData).getMessage());
+		assertEquals(false, checkData.start(userData).isSuccess());
+	}
+	
+	@Test
+	@DisplayName("Login is too short")
+	void testStart_LoginTooShort() {
+		
+		CheckData checkData = new CheckData();
+		UserData userData = new UserData();
+		userData.setLogin("krys");
+		userData.setPassword("aaaaaaaaaa");
+		userData.setRPassword("aaaaaaaaaa");
+		
+		assertEquals("Check if login is correct (5 - 30 digits or used forbidden signs)", checkData.start(userData).getMessage());
+		assertEquals(false, checkData.start(userData).isSuccess());
+	}
+	
 }
