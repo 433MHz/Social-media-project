@@ -1,20 +1,53 @@
 package pl.krystian.TwiFac.register_new_user;
 
+import org.springframework.stereotype.Component;
+
+@Component
 class CheckData {
 	
-	final private int LOGIN_MAX_LENGTH = 5;
+	final private int LOGIN_MAX_LENGTH = 30;
 	final private int LOGIN_MIN_LENGTH = 5;
-	final private int PASSWORD_MAX_LENGTH = 5;
+	final private int PASSWORD_MAX_LENGTH = 30;
 	final private int PASSWORD_MIN_LENGTH = 5;
-
+	final private String LOGIN_ALLOWED_SIGNS = "0123456789QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm";
+	final private String PASSWORD_ALLOWED_SIGNS = LOGIN_ALLOWED_SIGNS + "!@#$%^&*()_-+=";
+	
 	
 	public RegistrationStatus start(UserData userData) {
+		
 		String password = userData.getPassword();
 		String rPassword = userData.getRPassword();
 		String login = userData.getLogin();
 		
-		passwordsCorrect(password, rPassword);
-		loginCorrect(login);
+		boolean passwordOk = passwordsCorrect(password, rPassword);
+		boolean loginOk = loginCorrect(login);
+		RegistrationStatus registrationStatus = new RegistrationStatus();
+		if(loginOk) {
+			if(passwordOk) {
+				if(loginIsNotInDatabase(login)) {
+					String message = "Succesfully created";
+					registrationStatus.setMessage(message);
+					registrationStatus.setSuccess(true);
+				}
+				else {
+					String message = "Username "+login+" is currently in use";
+					registrationStatus.setMessage(message);
+					registrationStatus.setSuccess(false);
+				}
+			}
+			else {
+				String message = "Check if password is correct ("+PASSWORD_MIN_LENGTH+" - "+PASSWORD_MAX_LENGTH+" digits or used forbidden signs)";
+				registrationStatus.setMessage(message);
+				registrationStatus.setSuccess(false);
+			}
+		}
+		else {
+			String message = "Check if login is correct ("+LOGIN_MIN_LENGTH+" - "+LOGIN_MAX_LENGTH+" digits or used forbidden signs)";
+			registrationStatus.setMessage(message);
+			registrationStatus.setSuccess(false);
+		}
+		
+		return registrationStatus;
 	}
 	
 	
@@ -46,7 +79,6 @@ class CheckData {
 				loginTooLong(login),
 				loginTooShort(login),
 				loginContainForbiddenSigns(login),
-				loginIsNotInDatabase(login)
 		};
 		
 		for (Boolean status : loginStatus) {
@@ -82,6 +114,15 @@ class CheckData {
 	
 	private boolean passwordContainForbiddenSigns(String password){
 		
+		for(int i = 0; i < password.length(); i++) {
+			String letter = password.charAt(i) + "";
+			
+			if(PASSWORD_ALLOWED_SIGNS.contains(letter)) {
+				
+			}
+			else return true;
+		}
+		return false;
 	}
 	
 	
@@ -121,6 +162,15 @@ class CheckData {
 	
 	private boolean loginContainForbiddenSigns(String login) {
 		
+		for(int i = 0; i < login.length(); i++) {
+			String letter = login.charAt(i) + "";
+			
+			if(LOGIN_ALLOWED_SIGNS.contains(letter)) {
+				
+			}
+			else return true;
+		}
+		return false;
 	}
 	
 	
@@ -129,6 +179,9 @@ class CheckData {
 	
 	
 	private boolean loginIsNotInDatabase(String login) {
-		
+		return true;
 	}
+	
+	
+	
 }
