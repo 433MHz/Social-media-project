@@ -7,11 +7,28 @@ public class User {
 
 	public RegistrationStatus addNew(UserData userData) {
 		/*
-		1. Check if userData is correct
-		2. Check if database is active
-		3. Send data to database
-		4. Send message to frontend
-		*/
-		return null;
+		 * 1. Check if userData is correct 
+		 * 2. Check if database is active 
+		 * 3. Send data
+		 * to database 
+		 * 4. Send message to frontend
+		 */
+
+		
+		// Pre.
+		OperationsHibernate operationsHibernate = new OperationsHibernate();
+		RegistrationStatus registrationStatus;
+		
+		// 1.
+		CheckData checkData = new CheckData();
+		registrationStatus = checkData.Check(userData);
+		operationsHibernate.setUserData();
+		
+		// 2.
+		if(!operationsHibernate.isDbActive()) {
+			registrationStatus = new RegistrationStatus("Database error", false);
+		}
+		
+		return registrationStatus;
 	}
 }
