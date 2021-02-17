@@ -34,16 +34,67 @@ class CheckDataTest {
 		}
 	}
 	
+	@Test
+	@DisplayName("Send 1000 too long logins")
 	void testCheck_tooLongLogin() {
+		checkData = new CheckData();
+		userData = new UserData();
 		
+		for(int i = 0; i < 1000; i++) {
+			int randomNum = ThreadLocalRandom.current().nextInt(31,1000+1);
+			String login = "";
+			for(int x = 0; x < randomNum; x++) {
+				login = login + LOGIN_ALLOWED_SIGNS.charAt(ThreadLocalRandom.current().nextInt(0, LOGIN_ALLOWED_SIGNS.length()));
+			}
+			userData.setLogin(login);
+			userData.setPassword("1234567");
+			userData.setRPassword("1234567");
+			
+			assertEquals("Login is too long", checkData.Check(userData).getMessage());
+			assertEquals(false, checkData.Check(userData).isSuccess());
+		}
 	}
 	
+	@Test
+	@DisplayName("Send 1000 too short logins")
 	void testCheck_tooShortLogin() {
+		checkData = new CheckData();
+		userData = new UserData();
 		
+		for(int i = 0; i < 1000; i++) {
+			int randomNum = ThreadLocalRandom.current().nextInt(1,4+1);
+			String login = "";
+			for(int x = 0; x < randomNum; x++) {
+				login = login + LOGIN_ALLOWED_SIGNS.charAt(ThreadLocalRandom.current().nextInt(0, LOGIN_ALLOWED_SIGNS.length()));
+			}
+			userData.setLogin(login);
+			userData.setPassword("1234567");
+			userData.setRPassword("1234567");
+			
+			assertEquals("Login is too short", checkData.Check(userData).getMessage());
+			assertEquals(false, checkData.Check(userData).isSuccess());
+		}
 	}
 	
+	@Test
+	@DisplayName("Send 1000 too long passwords")
 	void testCheck_tooLongPassword() {
+		checkData = new CheckData();
+		userData = new UserData();
 		
+		for(int i = 0; i < 1000; i++) {
+			int randomNum = ThreadLocalRandom.current().nextInt(31,1000+1);
+			String password = "";
+			for(int x = 0; x < randomNum; x++) {
+				password = password + PASSWORD_ALLOWED_SIGNS.charAt(ThreadLocalRandom.current().nextInt(0, PASSWORD_ALLOWED_SIGNS.length()));
+			}
+			userData.setLogin("1234567");
+			userData.setPassword(password);
+			userData.setRPassword(password);
+			
+			assertEquals("Password is too long", checkData.Check(userData).getMessage());
+			assertEquals(false, checkData.Check(userData).isSuccess());
+		}
 	}
 	
 	@Test
