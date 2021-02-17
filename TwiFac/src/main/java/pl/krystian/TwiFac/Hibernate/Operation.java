@@ -4,10 +4,12 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.springframework.stereotype.Component;
 
+@Component
 public class Operation {
 	
-	SessionFactory sessionFactory;
+	private SessionFactory sessionFactory;
 	
 	public SessionFactory setUp() throws Exception{
 		final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
@@ -16,10 +18,9 @@ public class Operation {
 		
 		try {
 			sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
-			return sessionFactory;
 		} catch (Exception e) {
 			StandardServiceRegistryBuilder.destroy(registry);
-			return null;
 		}
+		return sessionFactory;
 	}
 }
