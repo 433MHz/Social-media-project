@@ -1,5 +1,6 @@
 package pl.krystian.TwiFac.register_new_user;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
