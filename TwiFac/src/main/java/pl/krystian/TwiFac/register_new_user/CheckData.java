@@ -15,7 +15,7 @@ class CheckData {
 	public RegistrationStatus Check(UserData userData) {
 
 		String password = userData.getPassword();
-		String rPassword = userData.getRPassword();
+		String rPassword = userData.getrPassword();
 		String login = userData.getLogin();
 
 		RegistrationStatus registrationStatus;
