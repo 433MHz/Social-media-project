@@ -2,7 +2,8 @@ package pl.krystian.TwiFac.Token;
 
 import java.util.HashMap;
 
-public class ListOfTokenUser {
+class ListOfTokenUser {
+	
 	static HashMap<String, Integer> list;
 	
 	static void Add(String token, int id) {
