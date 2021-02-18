@@ -22,13 +22,19 @@ public class User {
 		// 1.
 		CheckData checkData = new CheckData();
 		registrationStatus = checkData.Check(userData);
-		operationsHibernate.setUserData();
 		
 		// 2.
 		if(!operationsHibernate.isDbActive()) {
 			registrationStatus = new RegistrationStatus("Database error", false);
 		}
 		
+		// 3.
+		if(registrationStatus.isSuccess()) {
+			UserDataDAO userDataDAO = new UserDataDAO();
+			operationsHibernate.setUserData(userDataDAO);
+		}
+		
+		// 4.
 		return registrationStatus;
 	}
 }

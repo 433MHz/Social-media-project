@@ -9,12 +9,13 @@ import pl.krystian.TwiFac.Hibernate.Operation;
 
 public class OperationsHibernate {
 
-	@Autowired
 	Operation operation;
+	
 	SessionFactory sessionFactory;
 	
 	boolean isDbActive() {
 		try {
+			operation = new Operation();
 			sessionFactory = operation.setUp();
 			Session session = sessionFactory.openSession();
 			session.beginTransaction();
@@ -25,14 +26,15 @@ public class OperationsHibernate {
 		return true;
 	}
 	
-	void setUserData() {		
+	void setUserData(UserDataDAO userData) {		
+		operation = new Operation();
 		try {
 			sessionFactory = operation.setUp();
 		} catch (Exception e) {e.printStackTrace();}
 		
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-		session.save(new UserData(1, "Krystian", "Izdebski", "Izdebski"));
+		session.save(userData);
 		session.getTransaction().commit();
 		session.close();
 	}
