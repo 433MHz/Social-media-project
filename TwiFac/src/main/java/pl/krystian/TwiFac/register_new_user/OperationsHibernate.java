@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import pl.krystian.TwiFac.Hibernate.Operation;
 
 
-public class OperationsHibernate {
+class OperationsHibernate {
 
 	Operation operation;
 	

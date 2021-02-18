@@ -12,7 +12,7 @@ class CheckData {
 	final private String LOGIN_ALLOWED_SIGNS = "0123456789QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm";
 	final private String PASSWORD_ALLOWED_SIGNS = LOGIN_ALLOWED_SIGNS + "!@#$%^&*()_-+=";
 
-	public RegistrationStatus Check(UserData userData) {
+	RegistrationStatus Check(UserData userData) {
 
 		String password = userData.getPassword();
 		String rPassword = userData.getrPassword();

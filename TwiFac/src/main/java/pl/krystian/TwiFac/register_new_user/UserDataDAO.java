@@ -14,7 +14,7 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "user_Data")
-public class UserDataDAO {
+class UserDataDAO {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
