@@ -10,12 +10,16 @@ class ListOfTokenUser {
 		list.put(token, id);
 	}
 	
-	static boolean IsTokeAvailable(String token) {
+	static boolean isTokeAvailable(String token) {
 		if(list.containsKey(token)) return false;
 		else return true;
 	}
 	
-	static int GetId(String token) {
+	static int getId(String token) {
 		return list.get(token);
+	}
+	
+	static HashMap getList() {
+		return list;
 	}
 }
