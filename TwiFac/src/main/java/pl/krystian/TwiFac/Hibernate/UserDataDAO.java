@@ -1,4 +1,4 @@
-package pl.krystian.TwiFac.register_new_user;
+package pl.krystian.TwiFac.Hibernate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,7 +14,7 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "user_Data")
-class UserDataDAO {
+public class UserDataDAO {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -2,6 +2,8 @@ package pl.krystian.TwiFac.register_new_user;
 
 import org.springframework.stereotype.Component;
 
+import pl.krystian.TwiFac.Hibernate.UserDataDAO;
+
 @Component
 public class User {
 

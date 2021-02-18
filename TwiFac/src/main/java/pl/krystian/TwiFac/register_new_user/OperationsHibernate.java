@@ -5,6 +5,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import pl.krystian.TwiFac.Hibernate.Operation;
+import pl.krystian.TwiFac.Hibernate.UserDataDAO;
 
 
 class OperationsHibernate {
