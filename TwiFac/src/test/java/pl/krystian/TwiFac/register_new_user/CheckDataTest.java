@@ -4,14 +4,32 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.concurrent.ThreadLocalRandom;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import pl.krystian.TwiFac.config.Config;
+
 class CheckDataTest {
-	String LOGIN_ALLOWED_SIGNS = "0123456789QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm";
-	String PASSWORD_ALLOWED_SIGNS = LOGIN_ALLOWED_SIGNS + "!@#$%^&*()_-+=";
+	static String LOGIN_ALLOWED_SIGNS;
+	static String PASSWORD_ALLOWED_SIGNS;
+	static int LOGIN_MIN_LENGTH;
+	static int LOGIN_MAX_LENGTH;
+	static int PASSWORD_MIN_LENGTH;
+	static int PASSWORD_MAX_LENGTH;
+	
 	CheckData checkData;
 	UserData userData;
+	
+	@BeforeAll
+	static void setVariables() {
+		LOGIN_ALLOWED_SIGNS = Config.LOGIN_ALLOWED_SIGNS;
+		PASSWORD_ALLOWED_SIGNS = Config.PASSWORD_ALLOWED_SIGNS;
+		LOGIN_MIN_LENGTH = Config.LOGIN_MIN_LENGTH;
+		PASSWORD_MIN_LENGTH = Config.PASSWORD_MIN_LENGTH;
+		LOGIN_MAX_LENGTH = Config.LOGIN_MAX_LENGTH;
+		PASSWORD_MAX_LENGTH = Config.PASSWORD_MAX_LENGTH;
+	}
 	
 	@Test
 	@DisplayName("Send 1000 correct logins")
@@ -21,7 +39,7 @@ class CheckDataTest {
 		userData = new UserData();
 		
 		for(int i = 0; i < 1000; i++) {
-			int randomNum = ThreadLocalRandom.current().nextInt(5,30+1);
+			int randomNum = ThreadLocalRandom.current().nextInt(LOGIN_MIN_LENGTH,LOGIN_MAX_LENGTH+1);
 			String login = "";
 			for(int x = 0; x < randomNum; x++) {
 				login = login + LOGIN_ALLOWED_SIGNS.charAt(ThreadLocalRandom.current().nextInt(0,LOGIN_ALLOWED_SIGNS.length()));
@@ -41,7 +59,7 @@ class CheckDataTest {
 		userData = new UserData();
 		
 		for(int i = 0; i < 1000; i++) {
-			int randomNum = ThreadLocalRandom.current().nextInt(31,1000+1);
+			int randomNum = ThreadLocalRandom.current().nextInt(LOGIN_MAX_LENGTH + 1,1000+1);
 			String login = "";
 			for(int x = 0; x < randomNum; x++) {
 				login = login + LOGIN_ALLOWED_SIGNS.charAt(ThreadLocalRandom.current().nextInt(0, LOGIN_ALLOWED_SIGNS.length()));
@@ -62,7 +80,7 @@ class CheckDataTest {
 		userData = new UserData();
 		
 		for(int i = 0; i < 1000; i++) {
-			int randomNum = ThreadLocalRandom.current().nextInt(1,4+1);
+			int randomNum = ThreadLocalRandom.current().nextInt(LOGIN_MIN_LENGTH - 4, LOGIN_MIN_LENGTH);
 			String login = "";
 			for(int x = 0; x < randomNum; x++) {
 				login = login + LOGIN_ALLOWED_SIGNS.charAt(ThreadLocalRandom.current().nextInt(0, LOGIN_ALLOWED_SIGNS.length()));
@@ -83,7 +101,7 @@ class CheckDataTest {
 		userData = new UserData();
 		
 		for(int i = 0; i < 1000; i++) {
-			int randomNum = ThreadLocalRandom.current().nextInt(31,1000+1);
+			int randomNum = ThreadLocalRandom.current().nextInt(LOGIN_MAX_LENGTH + 1,1000+1);
 			String password = "";
 			for(int x = 0; x < randomNum; x++) {
 				password = password + PASSWORD_ALLOWED_SIGNS.charAt(ThreadLocalRandom.current().nextInt(0, PASSWORD_ALLOWED_SIGNS.length()));
@@ -104,7 +122,7 @@ class CheckDataTest {
 		userData = new UserData();
 		
 		for(int i = 0; i < 1000; i++) {
-			int randomNum = ThreadLocalRandom.current().nextInt(1,4+1);
+			int randomNum = ThreadLocalRandom.current().nextInt(PASSWORD_MIN_LENGTH - 4, PASSWORD_MIN_LENGTH);
 			String password = "";
 			for(int x = 0; x < randomNum; x++) {
 				password = password + PASSWORD_ALLOWED_SIGNS.charAt(ThreadLocalRandom.current().nextInt(0, PASSWORD_ALLOWED_SIGNS.length()));
