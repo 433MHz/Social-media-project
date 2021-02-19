@@ -17,7 +17,7 @@ class LoginAndPasswordCheck {
 		String loginAllowedSigns = Config.LOGIN_ALLOWED_SIGNS;
 		String passwordAllowedSigns = Config.PASSWORD_ALLOWED_SIGNS;
 		
-		if(loginLength < loginMaxLength && loginLength > loginMinLength) {
+		if(loginLength <= loginMaxLength && loginLength >= loginMinLength) {
 			if(passwordLength < passwordMaxLength && passwordLength > passwordMinLength) {
 				if(DataContainOnlyAllowedSign(login, loginAllowedSigns)) {
 					if(DataContainOnlyAllowedSign(password, passwordAllowedSigns)) {
