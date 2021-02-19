@@ -2,10 +2,12 @@ package pl.krystian.TwiFac.Token;
 
 import java.util.concurrent.ThreadLocalRandom;
 
+import pl.krystian.TwiFac.config.Config;
+
 class TokenGenerator {
 
-	private String allowedSignInToken = "0123456789qwertyuiopasdfghjklzxcvbnm!@#$%^&*()";
-	private int tokenLength = 160;
+	private String allowedSignInToken;
+	private int tokenLength;
 	
 	String Generate() {
 		String generatedToken = "";
@@ -15,5 +17,11 @@ class TokenGenerator {
 					.current().nextInt(0, allowedSignInToken.length()+1));
 		}
 		return generatedToken;
+	}
+	
+	
+	private void SetUp() {
+		allowedSignInToken = Config.TOKEN_ALLOWED_SIGNS;
+		tokenLength = Config.TOKEN_LENGTH;
 	}
 }

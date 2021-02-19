@@ -2,17 +2,21 @@ package pl.krystian.TwiFac.register_new_user;
 
 import org.springframework.stereotype.Component;
 
+import pl.krystian.TwiFac.config.Config;
+
 @Component
 class CheckData {
 
-	final private int LOGIN_MAX_LENGTH = 30;
-	final private int LOGIN_MIN_LENGTH = 5;
-	final private int PASSWORD_MAX_LENGTH = 30;
-	final private int PASSWORD_MIN_LENGTH = 5;
-	final private String LOGIN_ALLOWED_SIGNS = "0123456789QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm";
-	final private String PASSWORD_ALLOWED_SIGNS = LOGIN_ALLOWED_SIGNS + "!@#$%^&*()_-+=";
+	private int LOGIN_MAX_LENGTH;
+	private int LOGIN_MIN_LENGTH;
+	private int PASSWORD_MAX_LENGTH;
+	private int PASSWORD_MIN_LENGTH;
+	private String LOGIN_ALLOWED_SIGNS;
+	private String PASSWORD_ALLOWED_SIGNS;
 
 	RegistrationStatus Check(UserData userData) {
+		
+		SetValues();
 
 		String password = userData.getPassword();
 		String rPassword = userData.getrPassword();
@@ -52,6 +56,16 @@ class CheckData {
 			}
 		}
 		return registrationStatus;
+	}
+	
+	private void SetValues() {
+		LOGIN_MAX_LENGTH = Config.LOGIN_MAX_LENGTH;
+		LOGIN_MIN_LENGTH = Config.LOGIN_MIN_LENGTH;
+		LOGIN_ALLOWED_SIGNS = Config.LOGIN_ALLOWED_SIGNS;
+		PASSWORD_MAX_LENGTH = Config.PASSWORD_MAX_LENGTH;
+		PASSWORD_MIN_LENGTH = Config.PASSWORD_MIN_LENGTH;
+		PASSWORD_ALLOWED_SIGNS = Config.PASSWORD_ALLOWED_SIGNS;
+		
 	}
 
 	private boolean CheckIfContainOnlyAllowedSigns(String text, String signs) {
