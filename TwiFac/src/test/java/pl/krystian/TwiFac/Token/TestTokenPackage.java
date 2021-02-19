@@ -50,6 +50,7 @@ class TestTokenPackage {
 				@BeforeAll
 				void setUpOnce() {
 					int randomNum = ThreadLocalRandom.current().nextInt(PASSWORD_MIN_LENGTH, PASSWORD_MAX_LENGTH+1);
+					password = "";
 					for(int i = 0; i < randomNum; i++) {
 						char randomChar = PASSWORD_ALLOWED_SIGNS.charAt(ThreadLocalRandom.current().nextInt(0, PASSWORD_ALLOWED_SIGNS.length()));
 						password = password + randomChar+"";
@@ -110,6 +111,23 @@ class TestTokenPackage {
 						System.out.println(login + " | " + password);
 						assertEquals(false, loginAndPasswordCheck.CanLoginAndPasswordBeUsed(loginAndPassword));
 						}
+				}
+				
+				@Test
+				@DisplayName("Login is OK")
+				void TestLoginIsWorking() {
+					for(int i = 0; i < 1000; i ++) {
+					loginAndPassword.setPassword(password);
+					
+					int rangeNum = ThreadLocalRandom.current().nextInt(LOGIN_MIN_LENGTH, LOGIN_MAX_LENGTH + 1);
+					int randomNum = ThreadLocalRandom.current().nextInt(0, textToCut.length() - rangeNum);
+					
+					String login = textToCut.substring(randomNum, randomNum + rangeNum);
+					
+					loginAndPassword.setLogin(login);
+					System.out.println("Working Login " + login + " | " + password + " Login length: " + login.length() + " Password length: " + password.length());
+					assertEquals(true, loginAndPasswordCheck.CanLoginAndPasswordBeUsed(loginAndPassword));
+					}
 				}
 			}
 			
