@@ -8,9 +8,9 @@ import org.hibernate.SessionFactory;
 import pl.krystian.TwiFac.Hibernate.Operation;
 import pl.krystian.TwiFac.Hibernate.UserDataDAO;
 
-class CheckLoginAndPassword {
+class CheckLoginAndPasswordInDatabase {
 
-	int check(LoginAndPassword loginAndPassword) {
+	int GetUserId(LoginAndPassword loginAndPassword) {
 		String login = loginAndPassword.getLogin();
 		String password = loginAndPassword.getPassword();
 		

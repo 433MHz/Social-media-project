@@ -10,6 +10,8 @@ class TokenGenerator {
 	private int tokenLength;
 	
 	String Generate() {
+		SetUp();
+		
 		String generatedToken = "";
 		
 		for(int i = 0; i < tokenLength; i++) {

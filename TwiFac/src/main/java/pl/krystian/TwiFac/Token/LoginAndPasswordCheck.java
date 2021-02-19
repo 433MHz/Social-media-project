@@ -4,7 +4,7 @@ import pl.krystian.TwiFac.config.Config;
 
 class LoginAndPasswordCheck {
 	
-	boolean Check(LoginAndPassword loginAndPassword) {
+	boolean CanLoginAndPasswordBeUsed(LoginAndPassword loginAndPassword) {
 		String login = loginAndPassword.getLogin();
 		String password = loginAndPassword.getPassword();
 		
