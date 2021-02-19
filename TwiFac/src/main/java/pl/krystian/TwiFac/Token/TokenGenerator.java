@@ -17,6 +17,10 @@ class TokenGenerator {
 		for(int i = 0; i < tokenLength; i++) {
 			generatedToken = generatedToken + allowedSignInToken.charAt(ThreadLocalRandom
 					.current().nextInt(0, allowedSignInToken.length()+1));
+			
+			if(ListOfTokenUser.isTokeAvailable(generatedToken)) {
+				return null;
+			}
 		}
 		return generatedToken;
 	}

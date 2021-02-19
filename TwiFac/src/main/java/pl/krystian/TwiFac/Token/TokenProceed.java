@@ -5,12 +5,11 @@ package pl.krystian.TwiFac.Token;
 	TokenAuthenticationStatusExtended GetUserIDByToken(String token) {
 		
 		TokenAuthenticationStatusExtended tokenAuthenticationStatus = new TokenAuthenticationStatusExtended();
-		int id;
 		
 		if(ListOfTokenUser.getList().containsKey(token)) {
 			tokenAuthenticationStatus.setMessage("Id returned");
 			tokenAuthenticationStatus.setSuccessed(true);
-			tokenAuthenticationStatus.setId(id = ListOfTokenUser.getId(token));
+			tokenAuthenticationStatus.setId(ListOfTokenUser.getId(token));
 		}
 		else {
 			tokenAuthenticationStatus.setMessage("Token has expired");
