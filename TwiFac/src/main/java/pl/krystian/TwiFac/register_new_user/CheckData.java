@@ -26,35 +26,16 @@ class CheckData {
 
 		int optionNum = 0;
 
-		if (!CheckIfContainOnlyAllowedSigns(login, LOGIN_ALLOWED_SIGNS))
-			registrationStatus = new RegistrationStatus("Login contain unallowed signs", false);
-		else {
-			if (!CheckIfContainOnlyAllowedSigns(password, PASSWORD_ALLOWED_SIGNS))
-				registrationStatus = new RegistrationStatus("Password contain unallowed signs", false);
-			else {
-				if (!password.equals(rPassword))
-					registrationStatus = new RegistrationStatus("Passwords are not equals", false);
-				else {
-					if (login.length() > LOGIN_MAX_LENGTH)
-						registrationStatus = new RegistrationStatus("Login is too long", false);
-					else {
-						if (login.length() < LOGIN_MIN_LENGTH)
-							registrationStatus = new RegistrationStatus("Login is too short", false);
-						else {
-							if (password.length() > PASSWORD_MAX_LENGTH)
-								registrationStatus = new RegistrationStatus("Password is too long", false);
-							else {
-								if (password.length() < PASSWORD_MIN_LENGTH)
-									registrationStatus = new RegistrationStatus("Password is too short", false);
-								else {
-									registrationStatus = new RegistrationStatus("User sucessfully created", true);
-								}
-							}
-						}
-					}
-				}
-			}
-		}
+		if (!CheckIfContainOnlyAllowedSigns(login, LOGIN_ALLOWED_SIGNS))			registrationStatus = new RegistrationStatus("Login contain unallowed signs", false);
+		else if (!CheckIfContainOnlyAllowedSigns(password, PASSWORD_ALLOWED_SIGNS))	registrationStatus = new RegistrationStatus("Password contain unallowed signs", false);
+		else if (!password.equals(rPassword))										registrationStatus = new RegistrationStatus("Passwords are not equals", false);
+		else if (login.length() > LOGIN_MAX_LENGTH)									registrationStatus = new RegistrationStatus("Login is too long", false);
+		else if (login.length() < LOGIN_MIN_LENGTH)									registrationStatus = new RegistrationStatus("Login is too short", false);
+		else if (password.length() > PASSWORD_MAX_LENGTH)							registrationStatus = new RegistrationStatus("Password is too long", false);
+		else if (password.length() < PASSWORD_MIN_LENGTH)							registrationStatus = new RegistrationStatus("Password is too short", false);
+		else 																		registrationStatus = new RegistrationStatus("User sucessfully created", true);
+									
+									
 		return registrationStatus;
 	}
 	
