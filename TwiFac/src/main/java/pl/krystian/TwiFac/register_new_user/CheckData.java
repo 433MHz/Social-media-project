@@ -34,8 +34,7 @@ class CheckData {
 		else if (password.length() > PASSWORD_MAX_LENGTH)							registrationStatus = new RegistrationStatus("Password is too long", false);
 		else if (password.length() < PASSWORD_MIN_LENGTH)							registrationStatus = new RegistrationStatus("Password is too short", false);
 		else 																		registrationStatus = new RegistrationStatus("User sucessfully created", true);
-									
-									
+								
 		return registrationStatus;
 	}
 	
