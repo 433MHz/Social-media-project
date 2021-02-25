@@ -1,4 +1,4 @@
-package pl.krystian.TwiFac.Hibernate;
+package pl.krystian.TwiFac.hibernate;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;

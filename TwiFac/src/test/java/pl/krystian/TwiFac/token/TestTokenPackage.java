@@ -1,4 +1,4 @@
-package pl.krystian.TwiFac.Token;
+package pl.krystian.TwiFac.token;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -13,6 +13,8 @@ import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
 
 import pl.krystian.TwiFac.config.Config;
+import pl.krystian.TwiFac.token.LoginAndPassword;
+import pl.krystian.TwiFac.token.LoginAndPasswordCheck;
 
 class TestTokenPackage {
 

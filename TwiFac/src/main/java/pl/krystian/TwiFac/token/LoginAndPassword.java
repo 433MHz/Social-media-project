@@ -1,4 +1,4 @@
-package pl.krystian.TwiFac.Token;
+package pl.krystian.TwiFac.token;
 
 import lombok.Getter;
 import lombok.Setter;

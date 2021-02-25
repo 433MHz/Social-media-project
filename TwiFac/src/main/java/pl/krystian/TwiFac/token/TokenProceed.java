@@ -1,4 +1,4 @@
-package pl.krystian.TwiFac.Token;
+package pl.krystian.TwiFac.token;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -9,7 +9,6 @@ class TokenProceed {
 	ApplicationContext context;
 	
 	TokenAuthenticationStatusExtended GetUserIDByToken(String token) {
-		
 		TokenAuthenticationStatusExtended tokenAuthenticationStatus;
 		
 		if(ListOfTokenUser.getList().containsKey(token))	tokenAuthenticationStatus = context.getBean(TokenAuthenticationStatusExtended.class, "Id returned", true, ListOfTokenUser.getId(token));
@@ -17,9 +16,6 @@ class TokenProceed {
 		
 		return tokenAuthenticationStatus;
 	}
-	
-	
-	
 	
 	
 	
@@ -48,10 +44,6 @@ class TokenProceed {
 		}
 		
 		TokenAuthenticationStatusWithToken tokenAuthenticationStatus = context.getBean(TokenAuthenticationStatusWithToken.class, "Wrong data format provided", false, null);
-		return tokenAuthenticationStatus;
-				
-	}
-	
-	
-	
+		return tokenAuthenticationStatus;	
+	}	
 }

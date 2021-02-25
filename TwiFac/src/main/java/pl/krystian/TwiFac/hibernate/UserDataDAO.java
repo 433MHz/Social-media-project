@@ -1,4 +1,4 @@
-package pl.krystian.TwiFac.Hibernate;
+package pl.krystian.TwiFac.hibernate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

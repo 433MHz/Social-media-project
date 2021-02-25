@@ -1,4 +1,4 @@
-package pl.krystian.TwiFac.Token;
+package pl.krystian.TwiFac.token;
 
 import java.util.List;
 
@@ -7,8 +7,8 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 
-import pl.krystian.TwiFac.Hibernate.Operation;
-import pl.krystian.TwiFac.Hibernate.UserDataDAO;
+import pl.krystian.TwiFac.hibernate.Operation;
+import pl.krystian.TwiFac.hibernate.UserDataDAO;
 
 class CheckLoginAndPasswordInDatabase {
 	
