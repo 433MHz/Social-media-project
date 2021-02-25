@@ -1,8 +1,6 @@
 package pl.krystian.TwiFac.config;
 
-import org.springframework.stereotype.Component;
 
-@Component
 public class Config {
 	public static final int LOGIN_MAX_LENGTH = 30;
 	public static final int LOGIN_MIN_LENGTH = 5;
@@ -13,8 +11,4 @@ public class Config {
 	public static final String DATABASE_TABLE_NAME = "";
 	public static final String TOKEN_ALLOWED_SIGNS = "0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM!@#$%^&*()";
 	public static final int TOKEN_LENGTH = 160;
-	
-	
-	
-
 }

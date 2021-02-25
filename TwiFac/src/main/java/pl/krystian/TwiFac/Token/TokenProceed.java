@@ -10,19 +10,10 @@ class TokenProceed {
 	
 	TokenAuthenticationStatusExtended GetUserIDByToken(String token) {
 		
-		TokenAuthenticationStatusExtended tokenAuthenticationStatus = context.getBean(TokenAuthenticationStatusExtended.class);
+		TokenAuthenticationStatusExtended tokenAuthenticationStatus;
 		
-		if(ListOfTokenUser.getList().containsKey(token)) {
-			tokenAuthenticationStatus.setMessage("Id returned");
-			tokenAuthenticationStatus.setSuccessed(true);
-			tokenAuthenticationStatus.setId(ListOfTokenUser.getId(token));
-		}
-		
-		else {
-			tokenAuthenticationStatus.setMessage("Token has expired");
-			tokenAuthenticationStatus.setSuccessed(false);
-			tokenAuthenticationStatus.setId(-1);
-		}
+		if(ListOfTokenUser.getList().containsKey(token))	tokenAuthenticationStatus = context.getBean(TokenAuthenticationStatusExtended.class, "Id returned", true, ListOfTokenUser.getId(token));
+		else												tokenAuthenticationStatus = context.getBean(TokenAuthenticationStatusExtended.class, "Token has expired", false, -1);
 		
 		return tokenAuthenticationStatus;
 	}
@@ -42,11 +33,7 @@ class TokenProceed {
 			
 			// When data to get id from database was invalid, then return this object
 			if(userID == -1) {
-				TokenAuthenticationStatusWithToken tokenAuthenticationStatus = context.getBean(TokenAuthenticationStatusWithToken.class);
-				tokenAuthenticationStatus.setMessage("Incorrect data");
-				tokenAuthenticationStatus.setSuccessed(false);
-				tokenAuthenticationStatus.setToken(null);
-				
+				TokenAuthenticationStatusWithToken tokenAuthenticationStatus = context.getBean(TokenAuthenticationStatusWithToken.class, "Incorrect data", false, null);
 				return tokenAuthenticationStatus;
 			}
 			
@@ -56,19 +43,11 @@ class TokenProceed {
 			// Save token and user ID in HashMap list with token as a key and userID as a value
 			ListOfTokenUser.Add(token, userID);
 			
-			TokenAuthenticationStatusWithToken tokenAuthenticationStatus = context.getBean(TokenAuthenticationStatusWithToken.class);
-			tokenAuthenticationStatus.setMessage("Added successfully");
-			tokenAuthenticationStatus.setSuccessed(true);
-			tokenAuthenticationStatus.setToken(token);
-			
+			TokenAuthenticationStatusWithToken tokenAuthenticationStatus = context.getBean(TokenAuthenticationStatusWithToken.class, "Added successfully", true, token);
 			return tokenAuthenticationStatus;
 		}
 		
-		TokenAuthenticationStatusWithToken tokenAuthenticationStatus = context.getBean(TokenAuthenticationStatusWithToken.class);
-		tokenAuthenticationStatus.setMessage("Wrong data format provided");
-		tokenAuthenticationStatus.setSuccessed(false);
-		tokenAuthenticationStatus.setToken(null);
-		
+		TokenAuthenticationStatusWithToken tokenAuthenticationStatus = context.getBean(TokenAuthenticationStatusWithToken.class, "Wrong data format provided", false, null);
 		return tokenAuthenticationStatus;
 				
 	}
