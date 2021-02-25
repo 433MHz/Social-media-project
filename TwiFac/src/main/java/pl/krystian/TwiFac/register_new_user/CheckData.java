@@ -26,8 +26,8 @@ class CheckData {
 
 		int optionNum = 0;
 
-		if (!CheckIfContainOnlyAllowedSigns(login, LOGIN_ALLOWED_SIGNS))			registrationStatus = new RegistrationStatus("Login contain unallowed signs", false);
-		else if (!CheckIfContainOnlyAllowedSigns(password, PASSWORD_ALLOWED_SIGNS))	registrationStatus = new RegistrationStatus("Password contain unallowed signs", false);
+		if (!HasAllowedSigns(login, LOGIN_ALLOWED_SIGNS))							registrationStatus = new RegistrationStatus("Login contain unallowed signs", false);
+		else if (!HasAllowedSigns(password, PASSWORD_ALLOWED_SIGNS))				registrationStatus = new RegistrationStatus("Password contain unallowed signs", false);
 		else if (!password.equals(rPassword))										registrationStatus = new RegistrationStatus("Passwords are not equals", false);
 		else if (login.length() > LOGIN_MAX_LENGTH)									registrationStatus = new RegistrationStatus("Login is too long", false);
 		else if (login.length() < LOGIN_MIN_LENGTH)									registrationStatus = new RegistrationStatus("Login is too short", false);
@@ -48,7 +48,7 @@ class CheckData {
 		
 	}
 
-	private boolean CheckIfContainOnlyAllowedSigns(String text, String signs) {
+	private boolean HasAllowedSigns(String text, String signs) {
 		for (int i = 0; i < text.length(); i++) {
 			if (!signs.contains(text.charAt(i) + "")) {
 				return false;
