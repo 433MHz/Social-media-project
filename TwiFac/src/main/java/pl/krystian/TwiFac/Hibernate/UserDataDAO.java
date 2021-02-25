@@ -7,13 +7,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 
 @Entity
 @Table(name = "user_Data")
+@Setter
+@Getter
 public class UserDataDAO {
 	
 	@Id
@@ -38,27 +39,6 @@ public class UserDataDAO {
 		super();
 		this.id = id;
 		this.login = login;
-		this.password = password;
-	}
-
-
-
-	public int getId() {
-		return id;
-	}
-	public String getLogin() {
-		return login;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public void setLogin(String login) {
-		this.login = login;
-	}
-	public void setPassword(String password) {
 		this.password = password;
 	}
 }

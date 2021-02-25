@@ -19,7 +19,7 @@ class ListOfTokenUser {
 		return list.get(token);
 	}
 	
-	static HashMap getList() {
+	static HashMap<String, Integer> getList() {
 		return list;
 	}
 }
