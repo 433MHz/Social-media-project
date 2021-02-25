@@ -10,3 +10,8 @@ First branch is FrontendJava. In this branch will be commited frontend code of p
 Second branch is BackendJava. In this branch will be commited backend code writed in Java language.
 
 Branch Main will contain merged branches of FrontendJava and BackendJava.
+
+
+
+25.02.2021
+Merged BackendJava with this main branch
