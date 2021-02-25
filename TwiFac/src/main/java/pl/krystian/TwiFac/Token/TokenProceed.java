@@ -1,16 +1,23 @@
 package pl.krystian.TwiFac.Token;
 
- class TokenProceed {
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+
+class TokenProceed {
+	 
+	@Autowired
+	ApplicationContext context;
 	
 	TokenAuthenticationStatusExtended GetUserIDByToken(String token) {
 		
-		TokenAuthenticationStatusExtended tokenAuthenticationStatus = new TokenAuthenticationStatusExtended();
+		TokenAuthenticationStatusExtended tokenAuthenticationStatus = context.getBean(TokenAuthenticationStatusExtended.class);
 		
 		if(ListOfTokenUser.getList().containsKey(token)) {
 			tokenAuthenticationStatus.setMessage("Id returned");
 			tokenAuthenticationStatus.setSuccessed(true);
 			tokenAuthenticationStatus.setId(ListOfTokenUser.getId(token));
 		}
+		
 		else {
 			tokenAuthenticationStatus.setMessage("Token has expired");
 			tokenAuthenticationStatus.setSuccessed(false);
@@ -35,7 +42,7 @@ package pl.krystian.TwiFac.Token;
 			
 			// When data to get id from database was invalid, then return this object
 			if(userID == -1) {
-				TokenAuthenticationStatusWithToken tokenAuthenticationStatus = new TokenAuthenticationStatusWithToken();
+				TokenAuthenticationStatusWithToken tokenAuthenticationStatus = context.getBean(TokenAuthenticationStatusWithToken.class);
 				tokenAuthenticationStatus.setMessage("Incorrect data");
 				tokenAuthenticationStatus.setSuccessed(false);
 				tokenAuthenticationStatus.setToken(null);
@@ -49,7 +56,7 @@ package pl.krystian.TwiFac.Token;
 			// Save token and user ID in HashMap list with token as a key and userID as a value
 			ListOfTokenUser.Add(token, userID);
 			
-			TokenAuthenticationStatusWithToken tokenAuthenticationStatus = new TokenAuthenticationStatusWithToken();
+			TokenAuthenticationStatusWithToken tokenAuthenticationStatus = context.getBean(TokenAuthenticationStatusWithToken.class);
 			tokenAuthenticationStatus.setMessage("Added successfully");
 			tokenAuthenticationStatus.setSuccessed(true);
 			tokenAuthenticationStatus.setToken(token);
@@ -57,7 +64,7 @@ package pl.krystian.TwiFac.Token;
 			return tokenAuthenticationStatus;
 		}
 		
-		TokenAuthenticationStatusWithToken tokenAuthenticationStatus = new TokenAuthenticationStatusWithToken();
+		TokenAuthenticationStatusWithToken tokenAuthenticationStatus = context.getBean(TokenAuthenticationStatusWithToken.class);
 		tokenAuthenticationStatus.setMessage("Wrong data format provided");
 		tokenAuthenticationStatus.setSuccessed(false);
 		tokenAuthenticationStatus.setToken(null);

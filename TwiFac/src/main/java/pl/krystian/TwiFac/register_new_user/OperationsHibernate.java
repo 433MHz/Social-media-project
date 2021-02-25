@@ -2,6 +2,7 @@ package pl.krystian.TwiFac.register_new_user;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import pl.krystian.TwiFac.Hibernate.Operation;
 import pl.krystian.TwiFac.Hibernate.UserDataDAO;
@@ -9,13 +10,13 @@ import pl.krystian.TwiFac.Hibernate.UserDataDAO;
 
 class OperationsHibernate {
 
+	@Autowired
 	Operation operation;
 	
 	SessionFactory sessionFactory;
 	
 	boolean isDbActive() {
 		try {
-			operation = new Operation();
 			sessionFactory = operation.setUp();
 			Session session = sessionFactory.openSession();
 			session.beginTransaction();
@@ -27,7 +28,6 @@ class OperationsHibernate {
 	}
 	
 	void setUserData(UserDataDAO userData) {		
-		operation = new Operation();
 		try {
 			sessionFactory = operation.setUp();
 		} catch (Exception e) {e.printStackTrace();}

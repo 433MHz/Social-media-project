@@ -46,7 +46,7 @@ class CheckDataTest {
 			}
 			userData.setLogin(login);
 			userData.setPassword(password);
-			userData.setrPassword(password);
+			userData.setRPassword(password);
 			assertEquals("User sucessfully created", checkData.Check(userData).getMessage());
 			assertEquals(true, checkData.Check(userData).isSuccess());
 		}
@@ -66,7 +66,7 @@ class CheckDataTest {
 			}
 			userData.setLogin(login);
 			userData.setPassword("1234567");
-			userData.setrPassword("1234567");
+			userData.setRPassword("1234567");
 			
 			assertEquals("Login is too long", checkData.Check(userData).getMessage());
 			assertEquals(false, checkData.Check(userData).isSuccess());
@@ -87,7 +87,7 @@ class CheckDataTest {
 			}
 			userData.setLogin(login);
 			userData.setPassword("1234567");
-			userData.setrPassword("1234567");
+			userData.setRPassword("1234567");
 			
 			assertEquals("Login is too short", checkData.Check(userData).getMessage());
 			assertEquals(false, checkData.Check(userData).isSuccess());
@@ -108,7 +108,7 @@ class CheckDataTest {
 			}
 			userData.setLogin("1234567");
 			userData.setPassword(password);
-			userData.setrPassword(password);
+			userData.setRPassword(password);
 			
 			assertEquals("Password is too long", checkData.Check(userData).getMessage());
 			assertEquals(false, checkData.Check(userData).isSuccess());
@@ -129,7 +129,7 @@ class CheckDataTest {
 			}
 			userData.setLogin("1234567");
 			userData.setPassword(password);
-			userData.setrPassword(password);
+			userData.setRPassword(password);
 			
 			assertEquals("Password is too short", checkData.Check(userData).getMessage());
 			assertEquals(false, checkData.Check(userData).isSuccess());

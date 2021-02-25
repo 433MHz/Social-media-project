@@ -4,19 +4,24 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 
 import pl.krystian.TwiFac.Hibernate.Operation;
 import pl.krystian.TwiFac.Hibernate.UserDataDAO;
 
 class CheckLoginAndPasswordInDatabase {
+	
+	@Autowired
+	ApplicationContext context;
 
 	int GetUserId(LoginAndPassword loginAndPassword) {
 		String login = loginAndPassword.getLogin();
 		String password = loginAndPassword.getPassword();
+				
+		Operation operation = context.getBean(Operation.class);
 		
-		Operation operation = new Operation();
-		
-		SessionFactory sessionFactory = null;;
+		SessionFactory sessionFactory = null;
 		
 		try {
 			sessionFactory = operation.setUp();
