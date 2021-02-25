@@ -1,5 +1,8 @@
 package pl.krystian.TwiFac.config;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Config {
 	public static final int LOGIN_MAX_LENGTH = 30;
 	public static final int LOGIN_MIN_LENGTH = 5;
